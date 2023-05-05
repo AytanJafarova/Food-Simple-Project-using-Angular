@@ -9,6 +9,10 @@ export class FoodService {
 
   constructor() { }
 
+    getFoodById(id:number): Food
+    {
+      return this.getAll().find(food=> food.id == id)!;
+    }
     getAllTags():Tag[]{
       return [
         { name: 'All', count: 14 },
@@ -20,6 +24,10 @@ export class FoodService {
         { name: 'Fry', count: 1 },
         { name: 'Soup', count: 1 },
       ];
+    }
+    getAllFoodsBySearchTerm(search:string) : Food[]
+    {
+      return this.getAll().filter(food=>food.name.toLowerCase().includes(search.toLowerCase()));
     }
    getAllFoodsByTag(tag:string) :Food[]
    {
