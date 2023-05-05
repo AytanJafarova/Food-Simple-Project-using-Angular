@@ -10,14 +10,10 @@ import { FoodService } from '../services/food/food.service';
   styleUrls: ['./cart-page.component.css']
 })
 export class CartPageComponent implements OnInit{
- 
+
   cart !: Cart;
-  constructor(private cartService:CartService, private foodService:FoodService)
+  constructor(private cartService:CartService)
   {
-    let foods = foodService.getAll();
-    cartService.addToCart(foods[1]);
-    cartService.addToCart(foods[3]);
-    cartService.addToCart(foods[4]);
     this.setCart()
   }
 
@@ -32,12 +28,12 @@ export class CartPageComponent implements OnInit{
     const quantity = parseInt(quantityInString);
     this.cartService.changeQuantity(cartItem.food.id, quantity)
   }
- 
+
   ngOnInit(): void {}
   setCart()
   {
     this.cart = this.cartService.getCart();
   }
-  
+
 
 }
